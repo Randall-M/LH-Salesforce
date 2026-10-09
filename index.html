@@ -130,6 +130,22 @@
     color: var(--blue);
   }
 
+  .cta {
+    justify-self: center;
+    display: inline-block;
+    padding: .75rem 2rem;
+    border-radius: 999px;
+    background: var(--green);
+    color: var(--navy);
+    font-family: var(--head);
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: filter .15s ease;
+  }
+  .cta:hover, .cta:focus-visible { filter: brightness(.92); }
+  .cta:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
   @media (max-width: 420px) {
     .photos { grid-template-columns: 1fr 1fr; grid-template-rows: 2fr 1fr; }
     .photos figure:first-child { grid-row: auto; grid-column: span 2; }
@@ -152,6 +168,8 @@
       <p>He has told you, O man, what is good; and what does the LORD require of you but to do justice, and to love kindness, and to walk humbly with your God?</p>
       <cite>Micah 6:8 (ESV)</cite>
     </blockquote>
+
+    <a class="cta" href="https://livinghope.co.za">Visit Our Website</a>
 
   </main>
 </body>
