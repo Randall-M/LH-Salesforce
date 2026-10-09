@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Living Hope Team Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+  /* ===== Brand Style Guide v4 ===== */
+  :root {
+    --blue: #0038b0;        /* primary */
+    --white: #ffffff;       /* primary */
+    --green: #8bc53f;       /* primary accent */
+    --navy: #0b2f79;        /* secondary */
+    --black: #000000;
+    --grey-10: #e6e6e6;
+    --pink: #cf4f9c;        /* secondary accents */
+    --red: #ee3838;
+    --sky: #0076bf;
+    --r-sm: 4px; --r-md: 8px; --r-lg: 16px;
+    --band: 6px;
+    /* Century Gothic (licensed) where installed; Didact Gothic as free fallback */
+    --body: "Century Gothic", "Didact Gothic", "Avenir", sans-serif;
+    --head: "Ubuntu", "Segoe UI", sans-serif;
+  }
+  /* ================================ */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--body);
+    color: var(--black);
+    background-color: #f6f7f9;
+    /* subtle paper texture (style guide) */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--band) + clamp(1rem, 4vh, 2.5rem)) clamp(1rem, 4vw, 3rem);
+  }
+
+  /* Straight segmented accent stripes, top and bottom */
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    left: 0; right: 0;
+    height: var(--band);
+    background: linear-gradient(90deg,
+      var(--blue)  0 40%,
+      var(--green) 40% 60%,
+      var(--sky)   60% 75%,
+      var(--pink)  75% 88%,
+      var(--red)   88% 100%);
+  }
+  body::before { top: 0; }
+  body::after  { bottom: 0; transform: scaleX(-1); }
+
+  .panel {
+    width: 100%;
+    max-width: 36rem;
+    display: grid;
+    gap: clamp(1rem, 3vh, 1.75rem);
+  }
+
+  h1 {
+    font-family: var(--head);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3.2vw, 2rem);
+    line-height: 1.2;
+    color: var(--blue);
+    text-align: center;
+  }
+
+  /* Three photos: one large, two stacked */
+  .photos {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: .6rem;
+    height: clamp(12rem, 42vh, 22rem);
+  }
+  .photos figure:first-child { grid-row: span 2; }
+  .photos figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-md);
+    background: var(--grey-10);
+    border-bottom: 4px solid var(--green);
+  }
+  .photos figure:nth-child(2) { border-color: var(--sky); }
+  .photos figure:nth-child(3) { border-color: var(--pink); }
+  .photos figure::before {           /* label shown until a photo loads */
+    content: attr(data-label);
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-size: .9rem; color: var(--navy); opacity: .6;
+  }
+  .photos img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .photos figure:nth-child(1) img { object-position: 50% 35%; }
+  .photos figure:nth-child(2) img { object-position: 25% 40%; }
+  .photos figure:nth-child(3) img { object-position: 55% 30%; }
+
+  .verse {
+    background: var(--white);
+    border-left: 4px solid var(--green);
+    border-radius: var(--r-sm) var(--r-md) var(--r-md) var(--r-sm);
+    padding: 1rem 1.25rem;
+  }
+  .verse p {
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--navy);
+  }
+  .verse cite {
+    display: block;
+    margin-top: .5rem;
+    font-family: var(--head);
+    font-style: normal;
+    font-weight: 500;
+    font-size: .85rem;
+    color: var(--blue);
+  }
+
+  @media (max-width: 420px) {
+    .photos { grid-template-columns: 1fr 1fr; grid-template-rows: 2fr 1fr; }
+    .photos figure:first-child { grid-row: auto; grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+  <main class="panel">
+
+    <h1>Bringing Hope, Breaking Despair, Building Africa</h1>
+
+    <!-- Photos: photo-1.jpg, photo-2.jpg, photo-3.jpg in the same folder (names are case-sensitive). To swap, replace the file keeping the same name. -->
+    <div class="photos">
+      <figure data-label="Photo 1"><img src="photo-1.jpg" alt="Trade Skills trainees welding" onerror="this.remove()"></figure>
+      <figure data-label="Photo 2"><img src="photo-2.jpg" alt="Smiling patient in a care ward" onerror="this.remove()"></figure>
+      <figure data-label="Photo 3"><img src="photo-3.jpg" alt="Living Hope community health worker visiting a home" onerror="this.remove()"></figure>
+    </div>
+
+    <blockquote class="verse">
+      <p>He has told you, O man, what is good; and what does the LORD require of you but to do justice, and to love kindness, and to walk humbly with your God?</p>
+      <cite>Micah 6:8 (ESV)</cite>
+    </blockquote>
+
+  </main>
+</body>
+</html>
